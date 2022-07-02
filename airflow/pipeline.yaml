@@ -1,0 +1,14 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: sklearn
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: pipeline
+            image: us.gcr.io/[my_gcp_account]/sklearn_pipeline
+          restartPolicy: OnFailure
